@@ -3,7 +3,7 @@
   "id": "quickcommands",
   "version": "${version}",
   "name": "Quick Commands",
-  "description": "Command aliases",
+  "description": "Create command aliases and run them easily with 'Quick Commands' key ('.' by default).\nUsed through '/quickcommands'",
   "authors": [
     "ExternalTime"
   ],

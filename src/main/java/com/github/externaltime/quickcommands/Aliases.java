@@ -114,11 +114,59 @@ public class Aliases {
             ctx.getSource().sendFeedback(Text.translatable("quickcommands.alias.list.clear", len));
             return 0;
         });
+        var help = literal("help").executes(ctx -> {
+            var src = ctx.getSource();
+            src.sendFeedback(Text.literal("Quick Commands").styled(style -> style.withBold(true)));
+            src.sendFeedback(Text.literal("Available subcommands:"));
+            src.sendFeedback(Text.literal("- ")
+                    .append(Text.literal("add [alias] [command]").styled(style -> style
+                            .withColor(Formatting.WHITE)
+                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.translatable("quickcommands.alias.help.hover", "add")))
+                            .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/quickcommands add "))))
+                    .append(" - ")
+                    .append(Text.translatable("quickcommands.alias.help.add").styled(style -> style.withItalic(true)))
+                    .styled(style -> style.withColor(Formatting.GRAY)));
+            src.sendFeedback(Text.literal("- ")
+                    .append(Text.literal("run [alias]").styled(style -> style
+                            .withColor(Formatting.WHITE)
+                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.translatable("quickcommands.alias.help.hover", "run")))
+                            .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/quickcommands run "))))
+                    .append(" - ")
+                    .append(Text.translatable("quickcommands.alias.help.run").styled(style -> style.withItalic(true)))
+                    .styled(style -> style.withColor(Formatting.GRAY)));
+            src.sendFeedback(Text.literal("- ")
+                    .append(Text.literal("remove [alias]").styled(style -> style
+                            .withColor(Formatting.WHITE)
+                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.translatable("quickcommands.alias.help.hover", "remove")))
+                            .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/quickcommands remove "))))
+                    .append(" - ")
+                    .append(Text.translatable("quickcommands.alias.help.remove").styled(style -> style.withItalic(true)))
+                    .styled(style -> style.withColor(Formatting.GRAY)));
+            src.sendFeedback(Text.literal("- ")
+                    .append(Text.literal("list").styled(style -> style
+                            .withColor(Formatting.WHITE)
+                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.translatable("quickcommands.alias.help.hover", "list")))
+                            .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/quickcommands list"))))
+                    .append(" - ")
+                    .append(Text.translatable("quickcommands.alias.help.list").styled(style -> style.withItalic(true)))
+                    .styled(style -> style.withColor(Formatting.GRAY)));
+            src.sendFeedback(Text.literal("- ")
+                    .append(Text.literal("clear").styled(style -> style
+                            .withColor(Formatting.WHITE)
+                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.translatable("quickcommands.alias.help.hover", "clear")))
+                            .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/quickcommands clear"))))
+                    .append(" - ")
+                    .append(Text.translatable("quickcommands.alias.help.clear").styled(style -> style.withItalic(true)))
+                    .styled(style -> style.withColor(Formatting.GRAY)));
+            src.sendFeedback(Text.translatable("quickcommands.alias.quickkey"));
+            return 0;
+        });
         return literal("quickcommands")
                 .then(add)
                 .then(run)
                 .then(remove)
                 .then(list)
-                .then(clear);
+                .then(clear)
+                .then(help);
     }
 }

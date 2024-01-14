@@ -7,5 +7,12 @@
   "quickcommands.alias.list.clear": "Removed all %d aliases",
   "quickcommands.alias.removed": "Removed '%s' as an alias for '%s'",
   "quickcommands.alias.unknown": "Unknown alias '%s'",
-  "quickcommands.alias.key": "Quick Commands"
+  "quickcommands.alias.key": "Quick Commands",
+  "quickcommands.alias.help.add": "Register a new alias",
+  "quickcommands.alias.help.run": "Run command associated with an alias. Use Quick Commands key to skip typing this out!",
+  "quickcommands.alias.help.remove": "Remove an alias",
+  "quickcommands.alias.help.list": "List available aliases",
+  "quickcommands.alias.help.clear": "Remove all aliases",
+  "quickcommands.alias.help.hover": "Use '%s' command",
+  "quickcommands.alias.quickkey": "You can also use Quick Commands key ('.' by default) to open chat with '/quickcommands run ' already typed in."
 }

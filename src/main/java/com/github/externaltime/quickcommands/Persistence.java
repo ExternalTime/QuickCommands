@@ -2,6 +2,7 @@ package com.github.externaltime.quickcommands;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.mojang.serialization.Codec;
@@ -33,9 +34,14 @@ public class Persistence {
     }
 
     public void save() {
-        var asJson = codec.encodeStart(JsonOps.INSTANCE, null).getOrThrow(false, unused -> {
-        });
-        var string = gson.toJson(asJson);
+        JsonElement jsonElement;
+        try {
+            jsonElement = codec.encodeStart(JsonOps.INSTANCE, null).getOrThrow(false, e -> {});
+        } catch (RuntimeException e) {
+            logger.error("Failed to serialize QuickCommands config");
+            return;
+        }
+        var string = gson.toJson(jsonElement);
         try {
             Files.writeString(CONFIG_HELPER_PATH, string, StandardCharsets.UTF_8);
             Files.move(CONFIG_HELPER_PATH, CONFIG_PATH, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
@@ -45,14 +51,19 @@ public class Persistence {
     }
 
     public void load() {
+        JsonElement jsonElement;
         try {
             var asString = Files.readString(CONFIG_PATH, StandardCharsets.UTF_8);
-            codec.decode(JsonOps.INSTANCE, gson.fromJson(asString, new TypeToken<>() {
-            }));
+            jsonElement = gson.fromJson(asString, new TypeToken<>() {});
         } catch (NoSuchFileException ignored) {
             logger.info("Config file for Quick Commands not found.");
+            return;
         } catch (IOException | JsonSyntaxException e) {
             logger.error("Failed to load Quick Commands config.", e);
+            return;
         }
+        codec.decode(JsonOps.INSTANCE, jsonElement)
+                .error()
+                .ifPresent(partial -> logger.error(partial.message()));
     }
 }

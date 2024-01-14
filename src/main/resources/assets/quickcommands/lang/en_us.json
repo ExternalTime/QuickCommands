@@ -1,0 +1,11 @@
+{
+  "quickcommands.alias.added": "Added '%s' as an alias for '%s'",
+  "quickcommands.alias.list.empty": "You have currently no aliases",
+  "quickcommands.alias.list.header": "Current aliases (%d):",
+  "quickcommands.alias.list.remove": "Remove alias '%s'",
+  "quickcommands.alias.list.run": "Run '%s'",
+  "quickcommands.alias.list.clear": "Removed all %d aliases",
+  "quickcommands.alias.removed": "Removed '%s' as an alias for '%s'",
+  "quickcommands.alias.unknown": "Unknown alias '%s'",
+  "quickcommands.alias.key": "Quick Commands"
+}

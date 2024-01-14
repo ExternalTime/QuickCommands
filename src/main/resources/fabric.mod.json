@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "quickcommands",
+  "version": "${version}",
+  "name": "Quick Commands",
+  "description": "Command aliases",
+  "authors": [
+    "ExternalTime"
+  ],
+  "contact": {
+    "repo": "https://github.com/ExternalTime/TODO"
+  },
+  "license": "LGPL-3.0",
+  "icon": "assets/quickcommands/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.github.externaltime.quickcommands.QuickCommands"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
